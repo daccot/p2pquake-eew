@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "P2P地震情報アラート",
+  "version": "1.2.0",
+  "description": "P2P地震情報をWebSocketで受信し、地震情報・緊急地震速報をブラウザ上に表示します。EEWカウントダウン、アイコン状態表示、バッジ通知対応。",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "wss://api.p2pquake.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon-normal-16.png",
+    "48": "icons/icon-normal-48.png",
+    "128": "icons/icon-normal-128.png"
+  },
+  "action": {
+    "default_title": "P2P地震情報アラート",
+    "default_icon": {
+      "16": "icons/icon-normal-16.png",
+      "48": "icons/icon-normal-48.png",
+      "128": "icons/icon-normal-128.png"
+    }
+  }
+}
